@@ -31,18 +31,25 @@ The integration should support:
   - Providing callbacks/information to the on issuance/expiry/renewal of tokens 
 
 ## Backend Servers
-We are providing backend servers and Solana RPC access to use for the competition.
 
-### Credentials
-To run this, you will need to have two pieces of credentials pre-registered:
+We are providing backend servers and Solana RPC access to use for the competition. We will set up VMs for your development and deploys as required.
 
- 1. `client_id` - this is the client that maps
- 2. `redirect_url` - the redirect URL that you will use
+### OAuth2 Backend
 
-To get new credentials for testing e-mail support@triton.one.
-
-### OAuth2 endpoints
-For testing we provide two oauth endpoints:
+For testing we provide an Oauth2 backend which offers the following two Oauth2 endpoints:
 
  - Auth URL:  https://auth-fra1.rpcpool.com:8443/oauth2/auth
  - Token URL: https://auth-fra1.rpcpool.com:8443/oauth2/token
+
+Your solution should be successfully able to work with the above endpoints. 
+
+
+### Oauth2 Credentials
+
+To run this, you will need to have two pieces of credentials pre-registered with the Oauth2 backend above:
+
+ 1. `client_id` - this is the client id under which the credentials will be registered
+ 2. `redirect_url` - the redirect URL/callback URL that the Oauth2 server will use to send credentials at the end of the authentication flow
+
+To get new credentials for testing e-mail support@triton.one. 
+
