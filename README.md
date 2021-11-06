@@ -7,7 +7,9 @@ Your oauth client needs to be able to support a PKCE Oauth flow.
 To run this, you will need to have two pieces of credentials pre-registered:
 
  1. `client_id` - this is the client that maps
- 2. `redirect_url` - 
+ 2. `redirect_url` - the redirect URL that you will use 
+
+To get new credentials for testing e-mail support@triton.one.
 
 ## OAuth2 endpoints
 
