@@ -1,6 +1,6 @@
 # Sample PKCE client
 
-This contains a sample golang auth client. The auth client opens a webserver which has a Login link. Click this login link and it will go through a "headless" PKCE flow, receive a token and turn this token into a permanent JWT which can be used to authenticate with RPC servers.
+This directory contains a sample golang auth client. The auth client opens a webserver which has a Login link. Click this Login link and it will go through a "headless" PKCE flow, receive a token and turn this token into a permanent JWT which can be used to authenticate with RPC servers.
 
 The client provides two urls
 
@@ -22,10 +22,10 @@ There is a test version of this client running here:
 
 https://auth-fra1.rpcpool.com/
 
-Clicking hte login link you will receive a new bearer token that you can use to authenticate with Triton One's staging RPC servers:
+Clicking the login link you will receive a new bearer token that you can use to authenticate with Triton One's staging RPC servers:
 
 ```
-$ curl -H https://stage.mainnet.rpcpool.com/tier
+$ curl https://stage.mainnet.rpcpool.com/tier
 free
 
 $ curl -H "Authorization: Bearer <token>" https://stage.mainnet.rpcpool.com/tier 
