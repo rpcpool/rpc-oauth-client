@@ -9,6 +9,8 @@ import (
 	"time"
 )
 
+// From: https://github.com/nirasan/go-oauth-pkce-code-verifier/blob/master/verifier.go
+
 const (
 	DefaultLength = 32
 	MinLength     = 32
