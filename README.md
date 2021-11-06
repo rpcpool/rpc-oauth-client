@@ -23,7 +23,7 @@ Eligibility for the Prize is determined by our judges: Brian Long & Linus Kendal
 ## Features
 
 The integration should support:
-  - Configuration of the parameters of an oauth2 pkce flow using custom auth/token urls (sample ones below for testing)
+  - Configuration of the parameters of an oauth2 pkce flow using custom auth/token urls along with custom requested scopes (sample ones below for testing)
   - Code verifier generation and validation for PKCE flow
   - Callback for receiving the initial authorization token and turning into a permanent token
   - Tracking expiry time of tokens received 
