@@ -1,3 +1,5 @@
+NOTE: THIS PRIZE HAS ALREADY BEEN CLAIMED. The Breakpoint event was held in 2021. 
+
 # rpc-oauth-client
 A "headless" Oauth client (PKCE) for Solana RPC services.
 
@@ -6,7 +8,7 @@ Web3 operates on a principal of user anonymity. However, this anonymity creates 
 An important point of distinction is that the user does not need to reveal their identity to use the service. This is headless OAuth in the sense that the user is not asked to identify themselves with the more familiar OAuth services offered by Github, Twitter, etc. The RPC-OAuth-Client allows a dApp to prove that RPC requests originate from their approved website.
 
 ## Solana Breakpoint Hackathon RPC OAuth Client Prize
-We are offering a 5,000 USDC prize for the person or team who completes a working headless OAuth client during the Solana Breakpoint Hackathon. The team who takes the challenge will also be eligible for the overall prize of 10,000 USDC (based solely on the opinion of the Solana Breakpoint Hackathon judges).
+NOTE: THIS PRIZE HAS ALREADY BEEN CLAIMED. The Breakpoint event was held in 2021. We offered a 5,000 USDC prize for the person or team who completes a working headless OAuth client during the Solana Breakpoint Hackathon. The team who takes the challenge will also be eligible for the overall prize of 10,000 USDC (based solely on the opinion of the Solana Breakpoint Hackathon judges).
 
 Your Oauth client needs to be able to support a PKCE Oauth2 flow. There is a sample that you can use for inspiration at https://auth0.com/docs/libraries/auth0-single-page-app-sdk.
 
