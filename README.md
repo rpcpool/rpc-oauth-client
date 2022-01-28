@@ -1,5 +1,3 @@
-NOTE: THIS PRIZE HAS ALREADY BEEN CLAIMED. The Breakpoint event was held in 2021. 
-
 # rpc-oauth-client
 A "headless" Oauth client (PKCE) for Solana RPC services.
 
@@ -7,34 +5,79 @@ Web3 operates on a principal of user anonymity. However, this anonymity creates 
 
 An important point of distinction is that the user does not need to reveal their identity to use the service. This is headless OAuth in the sense that the user is not asked to identify themselves with the more familiar OAuth services offered by Github, Twitter, etc. The RPC-OAuth-Client allows a dApp to prove that RPC requests originate from their approved website.
 
-## Solana Breakpoint Hackathon RPC OAuth Client Prize
-NOTE: THIS PRIZE HAS ALREADY BEEN CLAIMED. The Breakpoint event was held in 2021. We offered a 5,000 USDC prize for the person or team who completes a working headless OAuth client during the Solana Breakpoint Hackathon. The team who takes the challenge will also be eligible for the overall prize of 10,000 USDC (based solely on the opinion of the Solana Breakpoint Hackathon judges).
+## Integrating with your app/client
+ 
+To integrate with your own set up you'll need to add support for the Oauth PKCE flow
 
-Your Oauth client needs to be able to support a PKCE Oauth2 flow. There is a sample that you can use for inspiration at https://auth0.com/docs/libraries/auth0-single-page-app-sdk.
+In this repo we have included a sample `oauth.ts` that includes a TypeScript oauth client that can be used as a reference. An example of how to use this is given below:
 
-The final solution needs to work with the current Solana Web3.js library (https://github.com/solana-labs/solana-web3.js). The solution can be implemented as a plugin, wrapper, or incorporated directly into the solana-web3.js library via PR. The final solution is to be determined by the contributors.
+```
+  const endpoint = useMemo(() => clusterApiUrl(network), []);
 
-The final solution should include a sample frontend that demonstrates the use of the authentication framework and use of the Solana web3.js library to make an authenticated RPC request.
+  const [ connection, setConnection ] = useState<Connection>(new anchor.web3.Connection(rpcHost))
 
-The final solution must be open source (MIT license). It must be based on original work, but you are free to rely upon existing MIT-licensed libraries and code.
+  useEffect(() => {
+    (async () => {
+      const accessToken = await getOAuthToken(
+        "my-client-id", // This needs to be generated on the server side by us
+        "http://localhost:8080", // This needs to be whitelisted by us on the server side
+        "https://auth-fra1.rpcpool.com:8443/oauth2/auth",
+        "https://auth-fra1.rpcpool.com:8443/oauth2/token",
+      );
 
-The final solution must be secure with no obvious vectors for abuse.
+      setConnection(new anchor.web3.Connection(rpcHost, { httpHeaders: { 'Authorization': `Bearer ${accessToken}`}}));
+    })()
+  }, [])
+```
 
-Eligibility for the Prize is determined by our judges: Brian Long & Linus Kendall.
+We have also included sample golang source for an app that implements the oauth part. You can use this to write the custom integration with your app.
 
-## Features
+ 
+### Features
 
-The integration should support:
+Your integration should feature:
+
   - Configuration of the parameters of an oauth2 pkce flow using custom auth/token urls along with custom requested scopes (sample ones below for testing)
   - Code verifier generation and validation for PKCE flow
   - Callback for receiving the initial authorization token and turning into a permanent token
   - Tracking expiry time of tokens received 
   - Renewal of tokens using a renewal token
-  - Providing callbacks/information to the on issuance/expiry/renewal of tokens 
+
+
+### SDKs and other examples
+
+A sample SDK is provided from auth0, which can be used as a baseline:
+https://auth0.com/docs/libraries/auth0-single-page-app-sdk.
+
+There has also been work integrating oauth support with web3.js/candy machine/metaplex:
+
+https://github.com/metaplex-foundation/metaplex/pull/944
+https://github.com/metaplex-foundation/metaplex/pull/1193
+https://github.com/solana-labs/solana/issues/21816
+
+
 
 ## Backend Servers
 
-We are providing backend servers and Solana RPC access to use for the competition. We will set up VMs for your development and deploys as required.
+For testing, we currently have both a sample client and a set of backend servers set up. The sample client is given in this repo. To get oauth access credentials 
+
+### Sample client
+
+For the sample client you can visit https://auth-fra1.rpcpool.com  and click 'Login'. After the authentication flow you will be redirected back to a callback page on the same domain but with a token that you can use for RPC requests. 
+
+You can use the token received in the following way:
+
+```
+curl -H "Authorization: Bearer <token>" https://stage.mainnet.rpcpool.com ... rpc call ...
+```
+
+To validate that the token has given you higher access permissions use the following:
+
+```
+curl -H "Authorization: Bearer <token>" https://stage.mainnet.rpcpool.com/tier ... rpc call ...
+```
+
+The response should be `tier1,offline_access`
 
 ### OAuth2 Backend
 
