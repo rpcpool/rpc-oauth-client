@@ -5,6 +5,15 @@ Web3 operates on a principal of user anonymity. However, this anonymity creates 
 
 An important point of distinction is that the user does not need to reveal their identity to use the service. This is headless OAuth in the sense that the user is not asked to identify themselves with the more familiar OAuth services offered by Github, Twitter, etc. The RPC-OAuth-Client allows a dApp to prove that RPC requests originate from their approved website.
 
+## How does it work?
+
+This implements a version of standard oauth2 PKCE flow, but skips the actual authentication steps instead only authenticating the origin of the request. The origin can be authenticated in two ways:
+
+ 1) Only allow requests from a particular origin to initiate the request flow. This is easily spoofable from a command line, but not spoofable inside a standards compliant browser.
+ 2) Only do callbacks to a specific URL, meaning that at the end of the flow, we will redirect to that particular URL. This URL receives a temporary token that it will then interact with our service to replace with a permanent, timelimited access token.
+
+This ensures that someone seeking to abuse an RPC endpoint which has oauth2 support will have to run an interactive browser to receive the actual token and they will also be required to regularly refresh these tokens.
+
 ## Integrating with your app/client
  
 To integrate with your own set up you'll need to add support for the Oauth PKCE flow
@@ -77,7 +86,7 @@ To validate that the token has given you higher access permissions use the follo
 curl -H "Authorization: Bearer <token>" https://stage.mainnet.rpcpool.com/tier 
 ```
 
-The response should be `tier1,offline_access`
+The response should be `tier1,offline_access`. 
 
 ### OAuth2 Backend
 
@@ -97,4 +106,5 @@ To run this, you will need to have two pieces of credentials pre-registered with
  2. `redirect_url` - the redirect URL/callback URL that the Oauth2 server will use to send credentials at the end of the authentication flow
 
 To get new credentials for testing e-mail support@triton.one. 
+
 
