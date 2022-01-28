@@ -96,8 +96,9 @@ For testing we provide an Oauth2 backend which offers the following two Oauth2 e
  - Auth URL:  https://auth-fra1.rpcpool.com:8443/oauth2/auth
  - Token URL: https://auth-fra1.rpcpool.com:8443/oauth2/token
 
-Your solution should be successfully able to work with the above endpoints. 
+The auth URL is the starting point of the authentication flow. After the flow is completed, we will callback on the `redirect_url` that you specified in your oauth2 request. This URL needs to be whitelisted for your particular `client_id` (see below). 
 
+After the flow you'll receive a temporary token as a parameter to the callback. Use this temporary token with the `Token URL` above to turn it into a bearer token that you can use to authenticate with the RPC servers.
 
 ### Oauth2 Credentials
 
