@@ -74,7 +74,7 @@ curl -H "Authorization: Bearer <token>" https://stage.mainnet.rpcpool.com ... rp
 To validate that the token has given you higher access permissions use the following:
 
 ```
-curl -H "Authorization: Bearer <token>" https://stage.mainnet.rpcpool.com/tier ... rpc call ...
+curl -H "Authorization: Bearer <token>" https://stage.mainnet.rpcpool.com/tier 
 ```
 
 The response should be `tier1,offline_access`
