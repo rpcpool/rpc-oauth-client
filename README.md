@@ -47,14 +47,14 @@ Your integration should feature:
 ### SDKs and other examples
 
 A sample SDK is provided from auth0, which can be used as a baseline:
-https://auth0.com/docs/libraries/auth0-single-page-app-sdk.
+
+ - https://auth0.com/docs/libraries/auth0-single-page-app-sdk.
 
 There has also been work integrating oauth support with web3.js/candy machine/metaplex:
 
-https://github.com/metaplex-foundation/metaplex/pull/944
-https://github.com/metaplex-foundation/metaplex/pull/1193
-https://github.com/solana-labs/solana/issues/21816
-
+ - https://github.com/metaplex-foundation/metaplex/pull/944
+ - https://github.com/metaplex-foundation/metaplex/pull/1193 
+ - https://github.com/solana-labs/solana/issues/21816
 
 
 ## Backend Servers
