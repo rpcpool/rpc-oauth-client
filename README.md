@@ -19,7 +19,7 @@ This flow ensures that we can authenticate that the request comes from your appl
  
 To integrate with your own set up you'll need to add support for the Oauth PKCE flow
 
-In this repo we have included a sample `oauth.ts` that includes a TypeScript oauth client that can be used as a reference. An example of how to use this is given below:
+In this repo we have included a sample [oauth.ts](oauth.ts) that includes a TypeScript oauth client that can be used as a reference. An example of how to use this is given below:
 
 ```
   const endpoint = useMemo(() => clusterApiUrl(network), []);
