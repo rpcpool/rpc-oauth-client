@@ -10,8 +10,7 @@ An important point of distinction is that the user does not need to reveal their
 This implements a version of standard oauth2 PKCE flow, but skips the actual authentication steps instead only authenticating the origin of the request. The origin can be authenticated in two ways:
 
  1) Only allow requests from a particular origin to initiate the request flow. This is easily spoofable from a command line, but not spoofable inside a standards compliant browser due to XSS/CORS protections.
- 2) Only do callbacks to a specific URL, meaning that at the end of the flow, we will redirect to that particular URL. This URL receives a temporary token that it will then interact with our service to replace with a permanent, timelimited access token.
- 3) This callback can be used with any type of URL that the user's device can access - localhost, app, extension call back and so forth.
+ 2) Only do callbacks to a specific URL, meaning that at the end of the flow, we will redirect to that particular URL. This URL receives a temporary token that it will then interact with our service to replace with a permanent, timelimited access token. This callback can be used with any type of URL that the user's device can access - localhost, app, extension call back and so forth.
 
 This flow ensures that we can authenticate that the request comes from your application as an origin and that someone seeking to abuse an RPC endpoint which has oauth2 support will have to run an interactive browser to receive the actual token and they will also be required to regularly refresh these tokens, considerably increasing the effort to abuse RPC endpoints.
 
